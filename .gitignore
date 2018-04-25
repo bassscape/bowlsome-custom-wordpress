@@ -1,0 +1,52 @@
+composer.lock
+node_modules/
+vendor/
+
+# -------------------------
+# WordPress files to be ignored
+# -------------------------
+# ignore everything in the "app" directory, except the following files/directories:
+app/*.html
+app/*.php
+!app/index.php
+!app/wp-config.php
+
+app/cms/
+
+app/live/
+app/mysql/
+app/phpinfo/
+app/ppdbsr/
+
+app/assets/debug.log
+app/assets/ai1wm-backups/
+app/assets/gallery-bank/
+app/assets/languages/
+app/assets/mu-plugins/*
+app/assets/plugins/*
+app/assets/themes/*
+app/assets/uploads/*
+
+!app/assets/mu-plugins/pp_links_with_onclick.php
+!app/assets/mu-plugins/pp_mu_loader.php
+!app/assets/mu-plugins/pp_required_plugins.php
+!app/assets/mu-plugins/pp_tracking-code.php
+!app/assets/mu-plugins/class-tgm-plugin-activation/
+
+!app/assets/plugins/advanced-custom-fields-pro/
+!app/assets/plugins/google-maps-oembed-provider/
+!app/assets/plugins/gravityforms/
+!app/assets/plugins/gravityformsmailchimp/
+!app/assets/plugins/jumbo-by-bonfire/
+!app/assets/plugins/pp_images_galleries/
+!app/assets/plugins/wp-migrate-db-pro/
+!app/assets/plugins/wp-migrate-db-pro-cli/
+!app/assets/plugins/wp-migrate-db-pro-media-files/
+!app/assets/plugins/wp-all-export-pro/
+!app/assets/plugins/wp-all-import-pro/
+!app/assets/plugins/wpai-acf-add-on/
+!app/assets/plugins/wpai-user-add-on/
+!app/assets/plugins/wpai-woocommerce-add-on/
+
+!app/assets/themes/bowlsome/
+app/assets/themes/bowlsome/build/

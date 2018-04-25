@@ -1,0 +1,24 @@
+image: debian:stable-slim
+
+pipelines:
+  branches:
+    Development:
+      - step:
+          name: Deploy to staging
+          deployment: staging
+          script:
+            - apt-get update
+            - apt-get -y install git
+            - apt-get -qq install git-ftp
+            - git config git-ftp.syncroot app/
+            - git ftp push -v --user $FTP_STAGE_USERNAME --passwd $FTP_STAGE_PASSWORD ftp://$FTP_STAGE_SERVER
+    Live:
+      - step:
+          name: Deploy to production
+          deployment: production
+          script:
+            - apt-get update
+            - apt-get -y install git
+            - apt-get -qq install git-ftp
+            - git config git-ftp.syncroot app/
+            - git ftp push -v --user $FTP_LIVE_USERNAME --passwd $FTP_LIVE_PASSWORD ftp://$FTP_LIVE_SERVER
