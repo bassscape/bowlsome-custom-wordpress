@@ -1,0 +1,31 @@
+//---------------------------------------------------//
+// SASS MIXINS
+//---------------------------------------------------//
+@mixin clearfix { // usage: @include clearfix();
+	&::after {
+		clear: both;
+		content: "";
+		display: table;
+	}
+}
+.test_borders { border:solid em(2) red !important; border-right:0 !important; border-left:0 !important; } // @extend .test_borders;
+
+//Show and hide for the tablet_s breakpoint
+.hide_tablet_l { @include breakpoint(tablet_l) { display:none; } }
+.only_tablet_l { display: none; @include breakpoint(tablet_l) { display: block; } } //@extend .mobile_hide;
+.ie .only_tablet_l { display:none !important; }
+.ie .hide_tablet_l { display: block !important; }
+
+
+// Automated text alignment
+.text_align_left { // @extend .text_align_left;
+	text-align: left; // For Internet Explorer
+	@media only screen { text-align: center; } // For mobiles & single column
+	@include breakpoint(tablet_l) { text-align: left; } // For desktops
+}
+.text_align_center { text-align: center; } // @extend .text_align_center;
+.text_align_right { // @extend .text_align_right;
+	text-align: right; // For Internet Explorer
+	@media only screen { text-align: center; } // For mobiles & single column
+	@include breakpoint(tablet_l) { text-align: right; } // For desktops
+}

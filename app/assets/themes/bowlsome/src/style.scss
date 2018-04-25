@@ -1,0 +1,174 @@
+/*!
+Theme Name: bowlsome
+Theme URI: http://www.kwp.com.au
+Description: Developed by KWP!.
+Version: 1.0.0
+Author: KWP!
+Author URI: http://www.kwp.com.au
+*/
+//----------------------------------------
+// CSS Mini Reset
+// http://www.vcarrer.com/2010/05/css-mini-reset.html
+// A css reset focussed on only the most used CSS(HTML) elements  ......... like Divs, Tables and Forms.
+//----------------------------------------
+html, body, div, form, fieldset, legend, label { margin: 0; padding: 0; }
+table { border-collapse: collapse; border-spacing: 0; th, td { text-align: left; vertical-align: top; } }
+h1, h2, h3, h4, h5, h6, th, td, caption { font-weight:normal; }
+img { border: 0; }
+//----------------------------------------
+
+
+//----------------------------------------
+// Set the base pixel size
+//----------------------------------------
+body { font-size: 100%; }
+
+//----------------------------------------
+// Set up a conversion for pixels to ems
+// Why because ems are better and more flexible than pixels!
+// Usage: em(100)
+//----------------------------------------
+$browser-context: 16; // Default
+@function em($pixels, $context: $browser-context) { @return #{$pixels/$context}em }
+
+
+//----------------------------------------
+// CUSTOM MEDIA QUERY BREAKPOINTS - MOBILE FIRST
+// Usage: @include breakpoint(tablet_l) {  }
+//----------------------------------------
+@mixin breakpoint($point) {
+	@if $point == widescreen {
+		@media (min-width: em(1300)) { @content; }
+	} @else if $point == laptop {
+		@media (min-width: em($container_width)) { @content; }
+	} @else if $point == tablet {
+		@media (min-width: em(768)) { @content; }
+	} @else if $point == mobileonly {
+		@media (max-width: em(999))  { @content; }
+	}
+}
+
+
+//----------------------------------------
+// Import sass mixins
+//----------------------------------------
+@import 'mixins';
+
+
+//----------------------------------------
+// GRID FRAMEWORK & SETUP
+// http://susy.oddbird.net/
+//----------------------------------------
+// Some variables for our grid/s
+$container_width: 1000;
+$mobile_page_gutter: 40;
+$mobile_page_gutters: $mobile_page_gutter * 2;
+$width_remove_page_gutters: ($container_width + $mobile_page_gutters);
+
+// Include the Susy grid framework
+@import "../../../../../node_modules/susy/sass/_susy.scss";
+$susy: (
+	container: em($container_width), // Set a maximum container width
+	columns: 12, // How many columns to use
+	gutters: .8, // Gutter width is calculated as a ratio to the size of a column
+	global-box-sizing: border-box // Tells Susy to use border-box
+);
+@include border-box-sizing;
+
+
+// Main layout grid classes
+#wrapper_page {
+	//padding: 0 em(20);
+	@media (min-width: em($width_remove_page_gutters)) { // this is the container
+		padding: 0 0;
+	}
+}
+.wrapper_fullwidth {
+ 	//padding: 0 em(35);
+ 	@include susy-clearfix;
+}
+.wrapper_container {
+ 	@include container;
+ 	@include susy-clearfix;
+}
+#content {
+	@include breakpoint(tablet) {
+ 		//@include span(8);
+	}
+}
+#sidebar {
+	@include breakpoint(tablet) {
+ 		@include span(4 last);
+	}
+}
+
+// Some reusable grid classes
+.row_2_col {
+	@include susy-clearfix;
+	.col {
+		@include breakpoint(tablet) {
+			@include span(1 of 2 (gutters: .1));
+			&:last-child {
+				@include last;
+			}
+		}
+	}
+}
+.row_6_col {
+	@include susy-clearfix;
+	.col {
+		@include breakpoint(tablet) {
+			@include span(1 of 6);
+			&:last-child {
+				@include last;
+			}
+		}
+	}
+}
+
+//----------------------------------------
+// Setup a mixin to add borders to page elements for testing purposes
+// Usage: @include .test_borders;
+//----------------------------------------
+@mixin test_borders { border:solid em(1) red !important; border-right:0 !important; border-left:0 !important; }
+
+// Add elements and containers to apply borders
+.wrapper_container,
+#wrapper_page,
+header,
+#wrapper_content_sidebar,
+footer {
+	//@include test_borders;
+}
+#content,
+#sidebar,
+.wrapper_container,
+.col {
+	//@include test_borders;
+}
+
+
+//----------------------------------------
+// Import custom theme styles
+//----------------------------------------
+@import 'theme';
+//@import 'woocommerce';
+
+
+//----------------------------------------
+// IMPORT THIRD PARTY STYLES
+//----------------------------------------
+// Font Awesome
+//@import "../../../../bower_components/font-awesome/scss/font-awesome";
+// Animate.css includes
+//@import
+	// "_attention/attention.scss", // This will not import
+	//"../../../../bouncing-entrances/bouncing-entrances.scss",
+	//"../../../../bouncing-exits/bouncing-exits.scss",
+	//"../../../../flippers/flippers.scss",
+	//"../../../../lightspeed/lightspeed.scss",
+	//"../../../../rotating-entrances/rotating-entrances.scss",
+	//"../../../../rotating-exits/rotating-exits.scss",
+	//"../../../../bower_components/animate.css-scss/_specials/specials.scss",
+	//"../../../../bower_components/animate.css-scss/_fading-entrances/fading-entrances.scss",
+	//"../../../../bower_components/animate.css-scss/_fading-exits/fading-exits.scss";
