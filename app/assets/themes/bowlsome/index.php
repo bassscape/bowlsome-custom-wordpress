@@ -40,10 +40,12 @@
 		// ENQUIRIES
 		} elseif ( is_page_template( 'template_enquiries.php' ) ) {
 			$template_name = 'enquiries';
-		} elseif ( is_page_template( 'template_menu.php' ) ) {
-			$template_name = 'menu';
-		// ATTACHMENT POST
-		
+		} elseif ( is_page_template( 'template_menu_henley.php' ) ) {
+			$template_name = 'menu_henley';
+		} elseif ( is_page_template( 'template_menu_franklin.php' ) ) {
+			$template_name = 'menu_franklin';
+		} elseif ( is_page_template( 'template_information.php' ) ) {
+			$template_name = 'information';
 		// ATTACHMENT POST
 		} elseif ( is_attachment() ) {
 			$template_name = 'attachment';
