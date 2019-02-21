@@ -42,7 +42,7 @@
 					// Build menu information if is exists
 					//
 					$menu_upload = '';
-					$file = get_field('menu_upload', 'option');
+					$file = get_field('menu_upload_franklin', 'option');
 					if ($file) {
 						
 						$file_url = wp_get_attachment_url( $file );
